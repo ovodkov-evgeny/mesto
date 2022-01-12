@@ -7,7 +7,97 @@
 	<link rel="stylesheet" href="./pages/index.css">
 	<title>Mesto</title>
 </head>
-<body>
+<body class="page">
+	<div class="page__container">
+		<header class="header">
+			<img src="./images/logo.svg" alt="Логотип Mesto Russia" class="logo">
+		</header>
+
+		<main class="content">
+			<section class="profile">
+				<div class="profile__info">
+					<img src="./images/avatar.png" alt="Аватар профиля" class="profile__avatar">
+					<div class="profile__descr">
+						<div class="profile__title">
+							<h1 class="profile__name">Жак-Ив Кусто</h1>
+							<button class="profile__edit-btn">
+								<img src="./images/icon-edit.svg" alt="Кнопка редактирования профиля">
+							</button>
+						</div>
+						<p class="profile__text">Исследователь океана</p>
+					</div>
+				</div>
+				<button class="btn-add">
+					<img src="./images/icon-add.svg" alt="Кнопка добавления фото" class="btn-add__img">
+				</button>
+			</section>
+
+			<section class="elements">
+				<ul class="elements__list">
+					<li class="elements__list-item">
+						<img src="./images/elements-elbrus.png" alt="" class="elements__img">
+						<div class="elements__descr">
+							<h3 class="elements__title"></h3>
+							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+						</div>
+					</li>
+					<li class="elements__list-item">
+						<img src="./images/elements-elbrus.png" alt="" class="elements__img">
+						<div class="elements__descr">
+							<h3 class="elements__title"></h3>
+							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+						</div>
+					</li>
+					<li class="elements__list-item">
+						<img src="./images/elements-elbrus.png" alt="" class="elements__img">
+						<div class="elements__descr">
+							<h3 class="elements__title"></h3>
+							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+						</div>
+					</li>
+					<li class="elements__list-item">
+						<img src="./images/elements-elbrus.png" alt="" class="elements__img">
+						<div class="elements__descr">
+							<h3 class="elements__title"></h3>
+							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+						</div>
+					</li>
+					<li class="elements__list-item">
+						<img src="./images/elements-elbrus.png" alt="" class="elements__img">
+						<div class="elements__descr">
+							<h3 class="elements__title"></h3>
+							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+						</div>
+					</li>
+					<li class="elements__list-item">
+						<img src="./images/elements-elbrus.png" alt="" class="elements__img">
+						<div class="elements__descr">
+							<h3 class="elements__title"></h3>
+							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+						</div>
+					</li>
+				</ul>
+			</section>
+		</main>
+
+		<footer class="footer">
+			<p class="footer__copyright">&copy;2022 Mesto Russia</p>
+		</footer>
+
+		<div class="popup">
+			<div class="popup__container">
+				<form action="#" class="edit-form">
+					<h2 class="edit-form__title">Редактировать профиль</h2>
+					<label for=""></label>
+					<input type="text">
+					<label for=""></label>
+					<input type="text">
+					<button class="btn-save" type="submit">Сохранить</button>
+				</form>
+				<button class="btn-close" type="button"></button>
+			</div>
+		</div>
+	</div>
 	
 	<script src="./pages/index.js"></script>
 </body>
