@@ -1,0 +1,13 @@
+.btn-add {
+	width: 150px;
+	height: 50px;
+	background-color: transparent;
+	border: 2px solid #fff;
+	cursor: pointer;
+	align-self: center;
+	transition: opacity .3s;
+}
+
+.btn-add:hover {
+	opacity: .6;
+}
