@@ -1,0 +1,25 @@
+.btn-close {
+	padding: 0;
+	position: absolute;
+	right: -35px;
+	top: -35px;
+	width: 32px;
+	height: 32px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	transition: opacity .3s;
+}
+
+.btn-close:hover {
+	opacity: .6;
+}
+
+@media screen and (max-width: 767px) {
+	.btn-close {
+		width: 20px;
+		height: 20px;
+		right: 0;
+		top: -30px;
+	}
+}

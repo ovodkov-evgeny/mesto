@@ -1,5 +1,6 @@
 .profile__btn-edit {
 	margin-top: 5px;
+	padding: 0;
 	width: 24px;
 	height: 24px;
 	border: 1px solid #fff;
@@ -11,4 +12,12 @@
 
 .profile__btn-edit:hover {
 	opacity: .6;
+}
+
+@media screen and (max-width: 767px) {
+	.profile__btn-edit {
+		width: 18px;
+		height: 18px;
+		margin-top: 0;
+	}
 }

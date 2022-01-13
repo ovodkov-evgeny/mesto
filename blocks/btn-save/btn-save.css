@@ -1,0 +1,26 @@
+.btn-save {
+	width: 358px;
+	height: 50px;
+	background-color: #000;
+	color: #fff;
+	border: none;
+	border-radius: 2px;
+	font-size: 18px;
+	line-height: 22px;
+	text-align: center;
+	cursor: pointer;
+	transition: opacity .3s;
+}
+
+.btn-save:hover {
+	opacity: .8;
+}
+
+@media screen and (max-width: 767px) {
+	.btn-save {
+		width: 238px;
+		height: 46px;
+		font-size: 14px;
+		line-height: 17px;
+	}
+}
