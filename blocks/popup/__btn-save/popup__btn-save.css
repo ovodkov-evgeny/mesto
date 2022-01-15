@@ -1,4 +1,4 @@
-.profile__btn-save {
+.popup__btn-save {
 	margin-top: 18px;
 	padding: 0;
 	width: 358px;
@@ -14,12 +14,12 @@
 	transition: opacity .3s;
 }
 
-.profile__btn-save:hover {
+.popup__btn-save:hover {
 	opacity: .8;
 }
 
 @media screen and (max-width: 767px) {
-	.profile__btn-save {
+	.popup__btn-save {
 		margin-top: 15px;
 		width: 238px;
 		min-height: 46px;
