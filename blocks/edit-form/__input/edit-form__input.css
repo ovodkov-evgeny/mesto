@@ -1,20 +1,13 @@
 .edit-form__input {
 	width: 358px;
 	padding-bottom: 8px;
+	margin-bottom: 30px;
 	border: none;
 	border-bottom: 1px solid rgba(0, 0, 0, .2);
 	font-family: inherit;
 	font-size: 14px;
 	line-height: 17px;
 	box-sizing:border-box;
-}
-
-.edit-form__input[name="name"] {
-	margin-bottom: 30px;
-}
-
-.edit-form__input[name="about"] {
-	margin-bottom: 48px;
 }
 
 @media screen and (max-width: 767px) {

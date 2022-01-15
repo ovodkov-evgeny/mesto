@@ -25,7 +25,7 @@
 						<p class="profile__text">Исследователь океана</p>
 					</div>
 				</div>
-				<button class="btn-add" type="button" aria-label="Добавить"></button>
+				<button class="profile__btn-add" type="button" aria-label="Добавить"></button>
 			</section>
 
 			<section class="elements">
@@ -34,42 +34,42 @@
 						<img src="./images/elements-elbrus.png" alt="Гора Эльбрус" class="elements__img">
 						<div class="elements__descr">
 							<h3 class="elements__title">Гора Эльбрус</h3>
-							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+							<button class="elements__btn-like" type="button" aria-label="Like"></button>
 						</div>
 					</li>
 					<li class="elements__list-item">
 						<img src="./images/elements-kareliya.jpeg" alt="Карелия" class="elements__img">
 						<div class="elements__descr">
 							<h3 class="elements__title">Карелия</h3>
-							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+							<button class="elements__btn-like" type="button" aria-label="Like"></button>
 						</div>
 					</li>
 					<li class="elements__list-item">
 						<img src="./images/elements-leafes.jpeg" alt="Листья" class="elements__img">
 						<div class="elements__descr">
 							<h3 class="elements__title">Листья</h3>
-							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+							<button class="elements__btn-like" type="button" aria-label="Like"></button>
 						</div>
 					</li>
 					<li class="elements__list-item">
 						<img src="./images/elements-road.jpeg" alt="Дорога" class="elements__img">
 						<div class="elements__descr">
 							<h3 class="elements__title">Дорога в горах</h3>
-							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+							<button class="elements__btn-like" type="button" aria-label="Like"></button>
 						</div>
 					</li>
 					<li class="elements__list-item">
 						<img src="./images/elements-rocks.jpeg" alt="Морской прибой" class="elements__img">
 						<div class="elements__descr">
 							<h3 class="elements__title">Морской прибой в США</h3>
-							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+							<button class="elements__btn-like" type="button" aria-label="Like"></button>
 						</div>
 					</li>
 					<li class="elements__list-item">
 						<img src="./images/elements-savannah.jpeg" alt="Дерево в саванне" class="elements__img">
 						<div class="elements__descr">
 							<h3 class="elements__title">Дерево в саванне</h3>
-							<img src="./images/icon-heart.svg" alt="Иконка сердца" class="elements__like-icon">
+							<button class="elements__btn-like" type="button" aria-label="Like"></button>
 						</div>
 					</li>
 				</ul>
@@ -82,19 +82,21 @@
 
 		<div class="popup">
 			<div class="popup__container">
-				<form action="#" class="edit-form">
-					<h2 class="edit-form__title">Редактировать профиль</h2>
-					<label class="edit-form__label" for="name"></label>
-					<input class="edit-form__input" type="text" id="name" name="name">
-					<label class="edit-form__label"  for="about"></label>
-					<input class="edit-form__input" type="text" id="about" name="about">
-					<button class="btn-save" type="submit">Сохранить</button>
+				<h2 class="popup__title">Редактировать профиль</h2>
+				<form action="#" class="edit-form" name="edit-form">
+					<label class="edit-form__label">
+						<input class="edit-form__input" type="text" name="name" placeholder="Имя">
+					</label>
+					<label class="edit-form__label">
+						<input class="edit-form__input" type="text" name="about" placeholder="О себе">
+					</label>
+					<button class="profile__btn-save" type="submit">Сохранить</button>
 				</form>
-				<button class="btn-close" type="button" aria-label="Закрыть"></button>
+				<button class="profile__btn-close" type="button" aria-label="Закрыть"></button>
 			</div>
 		</div>
 	</div>
 	
-	<script src="./pages/index.js"></script>
+	<script src="./scripts/index.js"></script>
 </body>
 </html>
