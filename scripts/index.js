@@ -60,8 +60,9 @@ function renderCard (name, link) {
 	});
 
 	card.querySelector('.elements__img').addEventListener('click', () => {
-		popupImage.classList.add('popup_opened');
+		openPopup(popupImage);
 		bigImage.src = link;
+		bigImage.alt = 'Фото ' + name;
 		imageCaption.textContent = name;
 	});
 
@@ -72,19 +73,27 @@ function renderCard (name, link) {
 	return card;
 }
 
-function formOpenHandler(popup) {
+function openPopup(popup) {
+	popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+	popup.classList.remove('popup_opened');
+}
+
+function openForm(popup) {
 	return () => {
 		if (popup === popupEdit) {
 			nameInput.value = profileName.textContent;
 			aboutInput.value = profileText.textContent;
 		}
-		popup.classList.add('popup_opened');
+		openPopup(popup);
 	}
 }
 
-function formCloseHandler(evt) {
+function closeForm(evt) {
 	evt.preventDefault();
-	evt.target.closest('.popup').classList.remove('popup_opened');
+	closePopup(evt.target.closest('.popup'));
 }
 
 function editFormSubmitHandler(evt) {
@@ -93,7 +102,7 @@ function editFormSubmitHandler(evt) {
 		profileName.textContent = nameInput.value;
 		profileText.textContent = aboutInput.value;
 		
-		formCloseHandler(evt);
+		closeForm(evt);
 	}
 }
 
@@ -102,7 +111,10 @@ function addFormSubmitHandler(evt) {
 	if (titleInput.value !== '' && linkInput.value !== '') {
 		const elem = renderCard(titleInput.value, linkInput.value);
 		elementsList.prepend(elem);
-		formCloseHandler(evt);
+		titleInput.value = '';
+		linkInput.value = '';
+		
+		closeForm(evt);
 	}
 }
 
@@ -112,13 +124,13 @@ initialElements.forEach(item => {
 	elementsList.append(elem);
 });
 
-editBtn.addEventListener('click', formOpenHandler(popupEdit));
-addBtn.addEventListener('click', formOpenHandler(popupAdd));
+editBtn.addEventListener('click', openForm(popupEdit));
+addBtn.addEventListener('click', openForm(popupAdd));
 editForm.addEventListener('submit', editFormSubmitHandler);
 addForm.addEventListener('submit', addFormSubmitHandler);
 
 closeBtns.forEach(item => {
 	item.addEventListener('click', (evt) => {
-		formCloseHandler(evt);
+		closeForm(evt);
 	});
 });
