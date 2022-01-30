@@ -30,48 +30,7 @@
 
 			<section class="elements">
 				<ul class="elements__list">
-					<li class="elements__list-item">
-						<img src="./images/elements-elbrus.png" alt="Гора Эльбрус" class="elements__img">
-						<div class="elements__descr">
-							<h3 class="elements__title">Гора Эльбрус</h3>
-							<button class="elements__btn-like" type="button" aria-label="Like"></button>
-						</div>
-					</li>
-					<li class="elements__list-item">
-						<img src="./images/elements-kareliya.jpeg" alt="Карелия" class="elements__img">
-						<div class="elements__descr">
-							<h3 class="elements__title">Карелия</h3>
-							<button class="elements__btn-like" type="button" aria-label="Like"></button>
-						</div>
-					</li>
-					<li class="elements__list-item">
-						<img src="./images/elements-leafes.jpeg" alt="Листья" class="elements__img">
-						<div class="elements__descr">
-							<h3 class="elements__title">Листья</h3>
-							<button class="elements__btn-like" type="button" aria-label="Like"></button>
-						</div>
-					</li>
-					<li class="elements__list-item">
-						<img src="./images/elements-road.jpeg" alt="Дорога" class="elements__img">
-						<div class="elements__descr">
-							<h3 class="elements__title">Дорога в горах</h3>
-							<button class="elements__btn-like" type="button" aria-label="Like"></button>
-						</div>
-					</li>
-					<li class="elements__list-item">
-						<img src="./images/elements-rocks.jpeg" alt="Морской прибой" class="elements__img">
-						<div class="elements__descr">
-							<h3 class="elements__title">Морской прибой в США</h3>
-							<button class="elements__btn-like" type="button" aria-label="Like"></button>
-						</div>
-					</li>
-					<li class="elements__list-item">
-						<img src="./images/elements-savannah.jpeg" alt="Дерево в саванне" class="elements__img">
-						<div class="elements__descr">
-							<h3 class="elements__title">Дерево в саванне</h3>
-							<button class="elements__btn-like" type="button" aria-label="Like"></button>
-						</div>
-					</li>
+					
 				</ul>
 			</section>
 		</main>
@@ -80,18 +39,55 @@
 			<p class="footer__copyright">&copy;2022 Mesto Russia</p>
 		</footer>
 
-		<div class="popup">
+		<template class="element-template">
+			<li class="elements__list-item">
+				<img src="" alt=" " class="elements__img">
+				<div class="elements__descr">
+					<h3 class="elements__title"></h3>
+					<button class="elements__btn-like" type="button" aria-label="Like"></button>
+				</div>
+				<button class="elements__btn-delete" type="button" aria-label="Delete"></button>
+			</li>
+		</template>
+
+		<div class="popup popup-edit-profile">
 			<div class="popup__container">
 				<h2 class="popup__title">Редактировать профиль</h2>
-				<form action="#" class="edit-form" name="edit-form">
-					<label class="edit-form__label">
-						<input class="edit-form__input" type="text" name="name" placeholder="Имя">
+				<form action="#" class="form edit-form" name="edit-form">
+					<label class="form__label">
+						<input class="form__input" type="text" name="name" placeholder="Имя">
 					</label>
-					<label class="edit-form__label">
-						<input class="edit-form__input" type="text" name="about" placeholder="О себе">
+					<label class="form__label">
+						<input class="form__input" type="text" name="about" placeholder="О себе">
 					</label>
 					<button class="popup__btn-save" type="submit">Сохранить</button>
 				</form>
+				<button class="popup__btn-close" type="button" aria-label="Закрыть"></button>
+			</div>
+		</div>
+
+		<div class="popup popup-add-element">
+			<div class="popup__container">
+				<h2 class="popup__title">Новое место</h2>
+				<form action="#" class="form add-form" name="add-form">
+					<label class="form__label">
+						<input class="form__input" type="text" name="title" placeholder="Название">
+					</label>
+					<label class="form__label">
+						<input class="form__input" type="text" name="link" placeholder="Ссылка на картинку">
+					</label>
+					<button class="popup__btn-save" type="submit">Создать</button>
+				</form>
+				<button class="popup__btn-close" type="button" aria-label="Закрыть"></button>
+			</div>
+		</div>
+
+		<div class="popup popup-image">
+			<div class="popup-image__container">
+				<figure class="popup-image__figure">
+					<img src="" alt="" class="popup-image__img">
+					<figcaption class="popup-image__caption"></figcaption>
+				</figure>
 				<button class="popup__btn-close" type="button" aria-label="Закрыть"></button>
 			</div>
 		</div>
