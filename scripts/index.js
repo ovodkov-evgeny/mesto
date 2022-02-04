@@ -84,8 +84,11 @@ function closePopup(popup) {
 function openForm(popup) {
 	return () => {
 		if (popup === popupEdit) {
+			const inputList = Array.from(editForm.querySelectorAll('.form__input'));
+			const buttonElement = editForm.querySelector('.popup__btn-save');
 			nameInput.value = profileName.textContent;
 			aboutInput.value = profileText.textContent;
+			toggleButtonState(inputList, buttonElement);
 		}
 		openPopup(popup);
 	}
@@ -98,24 +101,20 @@ function closeForm(evt) {
 
 function editFormSubmitHandler(evt) {
 	evt.preventDefault();
-	if (nameInput.value !== '' && aboutInput.value !== '') {
-		profileName.textContent = nameInput.value;
-		profileText.textContent = aboutInput.value;
+	profileName.textContent = nameInput.value;
+	profileText.textContent = aboutInput.value;
 		
-		closeForm(evt);
-	}
+	closeForm(evt);
 }
 
 function addFormSubmitHandler(evt) {
 	evt.preventDefault();
-	if (titleInput.value !== '' && linkInput.value !== '') {
-		const elem = renderCard(titleInput.value, linkInput.value);
-		elementsList.prepend(elem);
-		titleInput.value = '';
-		linkInput.value = '';
-		
-		closeForm(evt);
-	}
+	const elem = renderCard(titleInput.value, linkInput.value);
+	elementsList.prepend(elem);
+	titleInput.value = '';
+	linkInput.value = '';
+	
+	closeForm(evt);
 }
 
 initialElements.forEach(item => {
