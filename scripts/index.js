@@ -88,6 +88,7 @@ function openForm(popup) {
 			const buttonElement = editForm.querySelector('.popup__btn-save');
 			nameInput.value = profileName.textContent;
 			aboutInput.value = profileText.textContent;
+			// checkInputValidity(editForm,nameInput);
 			toggleButtonState(inputList, buttonElement);
 		}
 		openPopup(popup);

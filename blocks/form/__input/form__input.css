@@ -1,7 +1,7 @@
 .form__input {
+	position: relative;
 	width: 358px;
-	padding-bottom: 8px;
-	margin-bottom: 30px;
+	padding-bottom: 6px;
 	border: none;
 	border-bottom: 1px solid rgba(0, 0, 0, .2);
 	font-family: inherit;
