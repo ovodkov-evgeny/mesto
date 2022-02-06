@@ -4,28 +4,34 @@ const validationConfig = {
 	submitButtonSelector: '.popup__btn-save',
 	inputErrorClass: 'form__input_type_error',
 	errorClass: 'form__input-error_active',
-};
+}
 
-
-const showError = (formElement, inputElement, errorMessage) => {
+const showError = (formElement, inputElement, errorMessage, objectConfig) => {
 	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-	inputElement.classList.add(validationConfig.inputErrorClass);
+	inputElement.classList.add(objectConfig.inputErrorClass);
 	errorElement.textContent = errorMessage;
-	errorElement.classList.add(validationConfig.errorClass);
+	errorElement.classList.add(objectConfig.errorClass);
 };
 
-const hideError = (formElement, inputElement) => {
+// const showError = (formElement, objectConfig, errorMessage) => {
+// 	const errorElement = formElement.querySelector(`.${objectConfig.inputSelector.id}-error`);
+// 	objectConfig.inputSelector.classList.add(validationConfig.inputErrorClass);
+// 	errorElement.textContent = errorMessage;
+// 	errorElement.classList.add(validationConfig.errorClass);
+// };
+
+const hideError = (formElement, inputElement, objectConfig) => {
 	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-	inputElement.classList.remove(validationConfig.inputErrorClass);
-	errorElement.classList.remove(validationConfig.errorClass);
+	inputElement.classList.remove(objectConfig.inputErrorClass);
+	errorElement.classList.remove(objectConfig.errorClass);
 	errorElement.textContent = '';
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, objectConfig) => {
 	if (inputElement.validity.valid) {
-		hideError(formElement, inputElement);
+		hideError(formElement, inputElement, objectConfig);
 	} else {
-		showError(formElement, inputElement, inputElement.validationMessage);
+		showError(formElement, inputElement, inputElement.validationMessage, objectConfig);
 	}
 };
 
@@ -43,7 +49,7 @@ const setEventListeners = (formElement, objectConfig) => {
 	toggleButtonState(inputList, buttonElement);
 	inputList.forEach((inputElement) => {
 		inputElement.addEventListener('input', function() {
-			checkInputValidity(formElement, inputElement);
+			checkInputValidity(formElement, inputElement, objectConfig);
 			toggleButtonState(inputList, buttonElement);
 		});
 	});
