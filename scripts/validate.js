@@ -2,6 +2,7 @@ const validationConfig = {
 	formSelector: '.form',
 	inputSelector: '.form__input',
 	submitButtonSelector: '.popup__btn-save',
+	inactiveButtonClass: 'popup__btn-save_disabled',
 	inputErrorClass: 'form__input_type_error',
 	errorClass: 'form__input-error_active',
 }
@@ -12,13 +13,6 @@ const showError = (formElement, inputElement, errorMessage, objectConfig) => {
 	errorElement.textContent = errorMessage;
 	errorElement.classList.add(objectConfig.errorClass);
 };
-
-// const showError = (formElement, objectConfig, errorMessage) => {
-// 	const errorElement = formElement.querySelector(`.${objectConfig.inputSelector.id}-error`);
-// 	objectConfig.inputSelector.classList.add(validationConfig.inputErrorClass);
-// 	errorElement.textContent = errorMessage;
-// 	errorElement.classList.add(validationConfig.errorClass);
-// };
 
 const hideError = (formElement, inputElement, objectConfig) => {
 	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -35,22 +29,22 @@ const checkInputValidity = (formElement, inputElement, objectConfig) => {
 	}
 };
 
-function resetValidation(inputList, buttonElement, formElement) { 
-	toggleButtonState(inputList, buttonElement); 
+function resetValidation(inputList, buttonElement, formElement, objectConfig) { 
+	toggleButtonState(inputList, buttonElement, objectConfig); 
 
 	inputList.forEach((inputElement) => { 
-		hideError(formElement, inputElement); 
+		hideError(formElement, inputElement, objectConfig); 
 	}); 
 } 
 
 const setEventListeners = (formElement, objectConfig) => {
 	const inputList = Array.from(formElement.querySelectorAll(objectConfig.inputSelector));
 	const buttonElement = formElement.querySelector(objectConfig.submitButtonSelector);
-	toggleButtonState(inputList, buttonElement);
+	toggleButtonState(inputList, buttonElement, objectConfig);
 	inputList.forEach((inputElement) => {
 		inputElement.addEventListener('input', function() {
 			checkInputValidity(formElement, inputElement, objectConfig);
-			toggleButtonState(inputList, buttonElement);
+			toggleButtonState(inputList, buttonElement, objectConfig);
 		});
 	});
 }
@@ -61,12 +55,22 @@ const hasInvalidInput = inputList => {
 	});
 }
 
-function toggleButtonState(inputList, buttonElement) {
+function toggleButtonState(inputList, buttonElement, objectConfig) {
 	if (hasInvalidInput(inputList)) {
-		buttonElement.disabled = true;
+		disableSubmit(buttonElement, objectConfig);
 	} else {
-		buttonElement.disabled = false;
+		enableSubmit(buttonElement, objectConfig);
 	}
+}
+
+function disableSubmit(buttonElement, objectConfig) {
+	buttonElement.disabled = true;
+	buttonElement.classList.add(objectConfig.inactiveButtonClass);
+}
+
+function enableSubmit(buttonElement, objectConfig) {
+	buttonElement.disabled = false;
+	buttonElement.classList.remove(objectConfig.inactiveButtonClass);
 }
 
 const enableValidation = (objectConfig) => {

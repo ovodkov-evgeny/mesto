@@ -12,6 +12,7 @@ const profileEditSubmitBtn = profileEditForm.querySelector('.popup__btn-save');
 
 const popupAddCard = document.querySelector('.popup-add-element');
 const btnAdd = document.querySelector('.profile__btn-add');
+const btnSaveCard = popupAddCard.querySelector('.popup__btn-save');
 const addForm = document.querySelector('.add-form');
 const titleInput = addForm.querySelector('.form__input[name="title"]');
 const linkInput = addForm.querySelector('.form__input[name="link"]');
@@ -58,8 +59,11 @@ function openPopup(popup) {
 	if (popup === popupEditProfile) {
 		nameInput.value = profileName.textContent;
 		aboutInput.value = profileText.textContent;
-		// resetValidation(profileEditInputList, profileEditSubmitBtn, profileEditForm);
+		
+		resetValidation(profileEditInputList, profileEditSubmitBtn, profileEditForm, validationConfig);
+		disableSubmit(profileEditSubmitBtn, validationConfig);
 	}
+	
 	popup.classList.add('popup_opened');
 	
 	document.addEventListener('keydown', handleEscClose);
@@ -84,7 +88,8 @@ function addFormSubmitHandler(evt) {
 	elementsList.prepend(elem);
 	titleInput.value = '';
 	linkInput.value = '';
-	
+
+	disableSubmit(btnSaveCard, validationConfig);
 	closePopup(popupAddCard);
 }
 
