@@ -1,21 +1,22 @@
 const popups = Array.from(document.querySelectorAll('.popup'));
 
-const popupEditProfile = document.querySelector('.popup-edit-profile');
+const profileEditPopup = document.querySelector('.popup-edit-profile');
 const profileEditBtn = document.querySelector('.profile__btn-edit');
 const profileEditForm = document.querySelector('.edit-form');
 const profileName = document.querySelector('.profile__name');
 const profileText = document.querySelector('.profile__text');
-const nameInput = profileEditForm.querySelector('.form__input[name="name"]');
-const aboutInput = profileEditForm.querySelector('.form__input[name="about"]');
-const profileEditInputList = Array.from(profileEditForm.querySelectorAll('.form__input'));
-const profileEditSubmitBtn = profileEditForm.querySelector('.popup__btn-save');
+const inputName = profileEditPopup.querySelector('.form__input[name="name"]');
+const inputAbout = profileEditPopup.querySelector('.form__input[name="about"]');
+const profileEditInputList = Array.from(profileEditPopup.querySelectorAll('.form__input'));
+const profileEditSubmitBtn = profileEditPopup.querySelector('.popup__btn-save');
 
 const popupAddCard = document.querySelector('.popup-add-element');
 const btnAdd = document.querySelector('.profile__btn-add');
 const btnSaveCard = popupAddCard.querySelector('.popup__btn-save');
-const addForm = document.querySelector('.add-form');
-const titleInput = addForm.querySelector('.form__input[name="title"]');
-const linkInput = addForm.querySelector('.form__input[name="link"]');
+const formAdd = document.querySelector('.add-form');
+const formAddInputList = Array.from(popupAddCard.querySelectorAll('.form__input'));
+const inputTitle = popupAddCard.querySelector('.form__input[name="title"]');
+const inputLink = popupAddCard.querySelector('.form__input[name="link"]');
 
 const elementsList = document.querySelector('.elements__list');
 const elementTemplate = document.querySelector('.element-template').content;
@@ -56,40 +57,40 @@ const handleEscClose = function (evt) {
 }
 
 function openPopup(popup) {
-	if (popup === popupEditProfile) {
-		nameInput.value = profileName.textContent;
-		aboutInput.value = profileText.textContent;
-		
-		resetValidation(profileEditInputList, profileEditSubmitBtn, profileEditForm, validationConfig);
-		disableSubmit(profileEditSubmitBtn, validationConfig);
+	if (popup === profileEditPopup) {
+		inputName.value = profileName.textContent;
+		inputAbout.value = profileText.textContent;
 	}
 	
 	popup.classList.add('popup_opened');
-	
 	document.addEventListener('keydown', handleEscClose);
 }
 
 function closePopup(popup) {
+	if (popup === popupAddCard) {
+		inputTitle.value = '';
+		inputLink.value = '';
+	}
+
 	popup.classList.remove('popup_opened');
 	document.removeEventListener('keydown', handleEscClose);
 }
 
 function profileEditFormSubmitHandler(evt) {
 	evt.preventDefault();
-	profileName.textContent = nameInput.value;
-	profileText.textContent = aboutInput.value;
+	profileName.textContent = inputName.value;
+	profileText.textContent = inputAbout.value;
 		
-	closePopup(popupEditProfile);
+	closePopup(profileEditPopup);
 }
 
 function addFormSubmitHandler(evt) {
 	evt.preventDefault();
-	const elem = renderCard(titleInput.value, linkInput.value);
+	const elem = renderCard(inputTitle.value, inputLink.value);
 	elementsList.prepend(elem);
-	titleInput.value = '';
-	linkInput.value = '';
+	inputTitle.value = '';
+	inputLink.value = '';
 
-	disableSubmit(btnSaveCard, validationConfig);
 	closePopup(popupAddCard);
 }
 
@@ -107,7 +108,15 @@ popups.forEach(popup => {
 	});
 });
 
-profileEditBtn.addEventListener('click', () => openPopup(popupEditProfile));
-btnAdd.addEventListener('click', () => openPopup(popupAddCard));
+profileEditBtn.addEventListener('click', () => {
+	openPopup(profileEditPopup);
+	resetValidation(profileEditInputList, profileEditSubmitBtn, profileEditPopup, validationConfig);
+});
+
+btnAdd.addEventListener('click', () => {
+	openPopup(popupAddCard);
+	resetValidation(formAddInputList, btnSaveCard, popupAddCard, validationConfig);
+});
+
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
-addForm.addEventListener('submit', addFormSubmitHandler);
+formAdd.addEventListener('submit', addFormSubmitHandler);
