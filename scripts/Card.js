@@ -1,4 +1,4 @@
-import { handleEscClose } from './index.js';
+import { openPopup, popupImage, bigImage, imageCaption } from './index.js';
 
 class Card {
 	constructor (data, templateSelector) {
@@ -33,14 +33,10 @@ class Card {
 	}
 
 	_openCard() {
-		const popupImage = document.querySelector('.popup-image');
-		const bigImage  = popupImage.querySelector('.popup-image__img');
-		const imageCaption = popupImage.querySelector('.popup-image__caption');
-
 		bigImage.src = this._link;
 		bigImage.alt = `Фото ${this._name}`;
 		imageCaption.textContent = this._name;
-		popupImage.classList.add('popup_opened');
+		openPopup(popupImage);
 	}
 
 	_toggleLikeState() {
@@ -55,7 +51,6 @@ class Card {
 
 		this._element.querySelector('.elements__img').addEventListener('click', () => {
 			this._openCard();
-			document.addEventListener('keydown', handleEscClose);
 		});
 
 		this._element.querySelector('.elements__btn-like').addEventListener('click', () => {
