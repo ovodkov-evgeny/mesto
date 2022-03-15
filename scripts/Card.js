@@ -30,6 +30,7 @@ class Card {
 
 	_removeCard() {
 		this._element.remove();
+		this._element = null;
 	}
 
 	_openCard() {
