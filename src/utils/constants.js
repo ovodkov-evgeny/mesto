@@ -31,9 +31,6 @@ const inputName = profileEditPopup.querySelector('.form__input[name="name"]');
 const inputAbout = profileEditPopup.querySelector('.form__input[name="about"]');
 const popupAddCard = document.querySelector('.popup_type_card-add');
 const btnAdd = document.querySelector('.profile__btn-add');
-const popupImage = document.querySelector('.popup_type_image');
-const bigImage  = popupImage.querySelector('.popup-image__img');
-const imageCaption = popupImage.querySelector('.popup-image__caption');
 const elementsListSelector = '.elements__list';
 
 export {
@@ -44,6 +41,4 @@ export {
 	inputAbout,
 	popupAddCard,
 	btnAdd,
-	bigImage,
-	imageCaption,
 	elementsListSelector };

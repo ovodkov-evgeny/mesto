@@ -30,12 +30,13 @@ const createCard = item => {
 };
 
 const cardsList = new Section ({
+	items: initialElements,
 	renderer: (item) => {
 		cardsList.addItem(createCard(item), false);
 	}
 }, elementsListSelector);
 
-cardsList.renderItems(initialElements);
+cardsList.renderItems();
 
 const editFormValidator = new FormValidator(validationConfig, profileEditPopup);
 const addFormValidator = new FormValidator(validationConfig, popupAddCard);
@@ -65,6 +66,7 @@ const openEditForm = () => {
 const addFormPopup = new PopupWithForm({
 	popupSelector: '.popup_type_card-add',
 	handleFormSubmit: (data) => {
+		data.name = data.title;
 		cardsList.addItem(createCard(data), true);
 		addFormPopup.close();
 	}
