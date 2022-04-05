@@ -16,6 +16,8 @@ import {
 	elementsListSelector } from "../utils/constants.js";
 import "./index.css";
 
+let userId;
+
 const api = new Api({
 	baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
 	headers: {
@@ -27,12 +29,15 @@ const api = new Api({
 api.getProfileInfo()
 .then(result => {
 	userInfo.setUserInfo(result);
+
+	userId = result._id;
 });
 
 api.getInitialCards()
 .then(cards => {
 	cards.forEach(card => {
 		cardsList.addItem(createCard(card), false);
+		// console.log(card);
 	});
 });
 
@@ -44,19 +49,31 @@ const handleCardClick = (name, link) => {
 	popupImage.open(name, link);
 }
 
-// const handleDeleteCardClick = card => {
+// const handleDeleteCardClick = (card, id) => {
 // 	deleteConfirmForm.open();
 // 	deleteConfirmForm.changeSubmitHandler(() => {
 // 		api.deleteCard(id)
-// 		.then(() => {
-// 			card.deleteCard();
-// 			deleteConfirmForm.close();
+// 		.then(result => {
+// 			console.log(result);
+// 			card.removeCard();
+// 			deleteConfirmForm.close()
 // 		});
 // 	});
 // }
 
 const createCard = item => {
-	const card = new Card(item, '.element-template', handleCardClick);
+	const card = new Card(userId, item, '.element-template', handleCardClick, (id) => {
+		deleteConfirmForm.open();
+		deleteConfirmForm.changeSubmitHandler(() => {
+			api.deleteCard(id)
+			.then(() => {
+				card.removeCard();
+				deleteConfirmForm.close();
+			});
+		});
+	});
+
+	// console.log(card);
 
 	return card.generateCard();
 };
@@ -68,7 +85,7 @@ const cardsList = new Section ({
 	}
 }, elementsListSelector);
 
-cardsList.renderItems();
+// cardsList.renderItems();
 
 const editFormValidator = new FormValidator(validationConfig, profileEditPopup);
 const addFormValidator = new FormValidator(validationConfig, popupAddCard);
@@ -114,6 +131,10 @@ const openAddForm = () => {
 	addFormPopup.open();
 	addFormValidator.resetValidation();
 }
+
+const deleteConfirmForm = new PopupWithForm({popupSelector: '.popup_type_delete-confirm'});
+
+deleteConfirmForm.setEventListeners();
 
 editFormPopup.setEventListeners();
 profileEditBtn.addEventListener('click', openEditForm);
