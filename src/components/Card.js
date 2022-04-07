@@ -1,5 +1,11 @@
 export default class Card {
-	constructor ( userId, data , templateSelector, handleCardClick, handleDeleteClick) {
+	constructor ( 
+		userId,
+		data ,
+		templateSelector,
+		handleCardClick,
+		handleDeleteClick,
+		handleLikeClick) {
 		this._name = data.name;
 		this._link = data.link;
 		this._likes = data.likes;
@@ -9,6 +15,7 @@ export default class Card {
 		this._templateSelector = templateSelector;
 		this._handleCardClick = handleCardClick;
 		this._handleDeleteClick = handleDeleteClick;
+		this._handleLikeClick = handleLikeClick;
 	}
 
 	_getTemplate() {
@@ -21,9 +28,22 @@ export default class Card {
 		return cardElement;
 	}
 
-	_setLikes() {
+	isLiked() {
+		const isLikedByMe = this._likes.find( user => user._id === this._userId);
+
+		return isLikedByMe;
+	}
+
+	setLikes(newLikes) {
+		this._likes = newLikes;
 		const likesCount = this._element.querySelector('.elements__like-count');
 		likesCount.textContent = this._likes.length;
+
+		if (this.isLiked()) {
+			this._enableLikeState();
+		} else {
+			this._disableLikeState();
+		}
 	}
 
 	generateCard() {
@@ -32,7 +52,7 @@ export default class Card {
 		this._element.querySelector('.elements__img').alt = this._name;
 		this._element.querySelector('.elements__title').textContent = this._name;
 		this._setEventListeners();
-		this._setLikes();
+		this.setLikes(this._likes);
 
 		if (this._ownerId !== this._userId) {
 			this._element.querySelector('.elements__btn-delete').style.display = 'none';
@@ -46,8 +66,12 @@ export default class Card {
 		this._element = null;
 	}
 
-	_toggleLikeState() {
-		this._element.querySelector('.elements__btn-like').classList.toggle('elements__btn-like_active');
+	_enableLikeState() {
+		this._element.querySelector('.elements__btn-like').classList.add('elements__btn-like_active');
+	}
+
+	_disableLikeState() {
+		this._element.querySelector('.elements__btn-like').classList.remove('elements__btn-like_active');
 	}
 
 	_setEventListeners() {
@@ -61,7 +85,7 @@ export default class Card {
 		});
 
 		this._element.querySelector('.elements__btn-like').addEventListener('click', () => {
-			this._toggleLikeState();
+			this._handleLikeClick(this._id);
 		});
 	}
 }

@@ -15,7 +15,10 @@
 		<main class="content">
 			<section class="profile">
 				<div class="profile__info">
-					<img src="<%=require('./images/avatar.jpg')%>" alt="Аватар профиля" class="profile__avatar">
+					<img src="#" alt="Аватар профиля" class="profile__avatar">
+					<div class="profile__avatar-overlay">
+						<button class="profile__avatar-edit" type="button"></button>
+					</div>
 					<div class="profile__heading">
 						<div class="profile__title">
 							<h1 class="profile__name"></h1>
@@ -43,8 +46,10 @@
 				<img src="#" alt=" " class="elements__img">
 				<div class="elements__descr">
 					<h3 class="elements__title"></h3>
-					<button class="elements__btn-like" type="button" aria-label="Like"></button>
-					<span class="elements__like-count"></span>
+					<div class="elements__like-wrapper">
+						<button class="elements__btn-like" type="button" aria-label="Like"></button>
+						<span class="elements__like-count"></span>
+					</div>
 				</div>
 				<button class="elements__btn-delete" type="button" aria-label="Delete"></button>
 			</li>
@@ -101,6 +106,20 @@
 				<h2 class="popup__title">Вы уверены?</h2>
 				<form action="#" class="form delete-form" name="delete" novalidate>
 					<button class="popup__btn-save" type="submit">Да</button>
+				</form>
+				<button class="popup__btn-close" type="button" aria-label="Закрыть"></button>
+			</div>
+		</div>
+
+		<div class="popup popup_type_avatar">
+			<div class="popup__container">
+				<h2 class="popup__title">Обновить аватар</h2>
+				<form action="#" class="form avatar-form" name="avatar" novalidate>
+					<label class="form__label">
+						<input class="form__input" id="avatar-input" type="url" name="avatar" placeholder="Ссылка на картинку" required>
+						<span class="form__input-error avatar-input-error"></span>
+					</label>
+					<button class="popup__btn-save" type="submit">Сохранить</button>
 				</form>
 				<button class="popup__btn-close" type="button" aria-label="Закрыть"></button>
 			</div>
