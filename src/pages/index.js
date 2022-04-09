@@ -8,8 +8,6 @@ import Api from "../components/Api.js";
 import {
 	profileEditPopup,
 	profileEditBtn,
-	inputName,
-	inputAbout,
 	popupAddCard,
 	btnAdd,
 	avatarPopup,
@@ -96,8 +94,8 @@ const editFormPopup = new PopupWithForm({
 	handleFormSubmit: (data) => {
 		editFormPopup.renderLoading('Сохранение...');
 		api.setProfileInfo(data)
-		.then(() => {
-			userInfo.setUserInfo(data);
+		.then((result) => {
+			userInfo.setUserInfo(result);
 			editFormPopup.close();
 		})
 		.catch(err => console.log(err))
@@ -106,11 +104,8 @@ const editFormPopup = new PopupWithForm({
 });
 
 const openEditForm = () => {
-	const {name, about}= userInfo.getUserInfo();
-	inputName.value = name;
-	inputAbout.value = about;
-	
 	editFormPopup.open();
+	editFormPopup.setInputValues(userInfo.getUserInfo());
 	editFormValidator.resetValidation();
 }
 
