@@ -12,9 +12,13 @@ _Функционал:_ Добавление/удаление карточек, 
 Ссылка на __[Github Pages](https://ovodkov-evgeny.github.io/mesto/)__ где размещен проект.
 
 
-### Как скачать проект?
+### Как скачать и запустить проект?
 
-Чтобы скачать проект нужно набрать в консоле ``` git clone https://github.com/ovodkov-evgeny/mesto.git```
+1. ``` git clone https://github.com/ovodkov-evgeny/mesto.git``` - скачиваете проект с Github
+
+2. ```npm install``` - устанавливаете все необходимые пакеты и зависимости
+
+3. ```npm run dev``` - запускате проект
 
 
 ### Планы по доработке
